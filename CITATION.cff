@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you reference the Reversibility Partition pattern, please cite this specification."
+title: "Reversibility Partition: A Governance Pattern for AI-Human Collaborative Pipelines"
+type: software
+version: "0.1.0"
+date-released: "2026-04-20"
+license: MIT
+authors:
+  - family-names: "Komada"
+    given-names: "Akihiko"
+    orcid: ""
+abstract: >
+  Reversibility Partition is a governance pattern that distributes oversight
+  authority by the reversibility of an action rather than by the class of the
+  agent executing or reviewing it. Review authority may be held by any agent,
+  including AI agents, because review is reversible. Ratification authority
+  (committing to an irreversible action) must be held by a named human principal.
+  The specification formalises axioms, a decision boundary, anti-patterns,
+  edge cases, and minimal implementation requirements. Prior-art credit is
+  given to 45 CFR §46 (the U.S. Common Rule), ICH E6(R2), and to two
+  independent open-source seed implementations.
+keywords:
+  - AI governance
+  - human-in-the-loop
+  - clinical decision support
+  - reversibility
+  - oversight
+  - reversibility-partition
+repository-code: "https://github.com/aki1770-del/reversibility-partition"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.PENDING"
+    description: "Zenodo DOI minted upon first public release."
