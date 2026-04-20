@@ -29,5 +29,5 @@ keywords:
 repository-code: "https://github.com/aki1770-del/reversibility-partition"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.PENDING"
-    description: "Zenodo DOI minted upon first public release."
+    value: "10.5281/zenodo.19661593"
+    description: "Zenodo DOI for v0.1.0."
