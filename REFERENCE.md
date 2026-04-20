@@ -14,7 +14,7 @@ Verification: ICH E6(R2) Addendum. Primary PDF: <https://database.ich.org/sites/
 
 ## Independent Code-Level Seeds
 
-Two recent open-source repositories independently implement the pattern described here, without either using the term "Reversibility Partition." Their existence motivated the view that the pattern needs a shared name.
+Three recent open-source repositories independently implement the pattern described here, without any of them using the term "Reversibility Partition." Their existence motivated the view that the pattern needs a shared name.
 
 **`nwspk/politech-awards-2026`.**
 Implements a review/ratify separation in a political-technology-awards pipeline: AI agents (`scripts/jury-run.py`, Project Mirror v2 evaluators) produce per-project scored rationales across 321 projects — a reversible review activity. Human CODEOWNERS then vote on iteration pull requests (48-hour deadline, majority wins) to ratify which rationale becomes canonical — the commitment activity. The agent-side output is revisable; the human-side vote closes the iteration. This is the review/ratify separation axis of Reversibility Partition, not the full pattern (the human-ratified artifact here is editorial, not subject-affecting). Credited as a partial seed.
@@ -23,6 +23,10 @@ Verification: <https://github.com/nwspk/politech-awards-2026>
 **`cogdeasy/med-react-app`.**
 Implements a state machine with transitions `pending_summary → summary_generated` (AI, reversible) and `under_review → approved/rejected` (human, irreversible for the consultation's effect on downstream record). The state machine encodes Reversibility Partition directly. Caveat: the implementation lives on a Devin-AI scaffold branch rather than `main`; the repo is a seed, not a production deployment. The pattern match is on shape, not on scale of use.
 Verification: <https://github.com/cogdeasy/med-react-app>
+
+**`galinilin/docgemma-frontend`.**
+Implements the pattern at the WebSocket-driven approval boundary in a Vue 3 medical-AI assistant. The AI agent proposes a `PendingToolApproval` (`src/types/`, `sessionStore.ts`) — the reversible review side — and the session enters `status === 'waiting_approval'`. `ToolApprovalModal.vue` exposes `approve` / `reject` / `close` emits to a named human user; `emit('approve', editedArgs)` commits to a write-class operation (prescribe medication, add allergy, save note) — the irreversibility ratification side. Two pattern-relevant constraints stand out: (1) the human can edit `editedArgs` before approval — the ratification step doubles as a revision surface — and (2) `patient_id` is hard-coded read-only in the modal (`isReadOnly`), defending the partition against re-targeting at the human gate. Implementation lives on `main`. Pattern match is on shape and on production scope.
+Verification: <https://github.com/galinilin/docgemma-frontend>, specifically `src/components/tools/ToolApprovalModal.vue` and `src/stores/sessionStore.ts`.
 
 These seeds are credited here because the specification synthesises their shape into named vocabulary. They are not downstream users of this spec; they are predecessors.
 
